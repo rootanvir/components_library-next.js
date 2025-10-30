@@ -13,7 +13,8 @@ const Page: FC<Props> = ({ }) => {
         <Btn text="Button" variant="outline" image='globe.svg' />
         <Btn text="Button" />
         <Btn text="Button" variant="3d" />
-        <Btn text="Button" variant="liquid" />
+        <Btn text="Button" variant="glow" />
+        <Btn text="Click me" variant='filling'/>
       </div>
     </div>
 

@@ -24,7 +24,7 @@ const ComView: FC<Props> = ({ className = "" }) => {
         <div className="p-6 bg-gray-800/30 rounded-2xl border border-gray-700 flex flex-col md:flex-row items-center gap-6">
           <Btn text="Download" variant="filling" />
           <p className="text-lg text-gray-300 leading-relaxed">
-            Save <span className="font-mono text-blue-400">Btn.tsx</span> inside your{" "}
+            Save <span className="font-mono text-blue-400">and Btn.tsx</span> inside your{" "}
             <span className="font-mono text-blue-400">/components/</span> directory for easy reuse.
           </p>
         </div>

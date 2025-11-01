@@ -1,0 +1,14 @@
+{
+  "Btn": {
+    "variants": [
+      "filled",
+      "outline",
+      "3d",
+      "glow",
+      "neon",
+      "gradient",
+      "filling",
+      "default"
+    ]
+  }
+}

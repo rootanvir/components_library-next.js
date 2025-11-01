@@ -1,16 +1,16 @@
-import React, { FC, ReactNode } from 'react';
-import { Children } from 'react';
-interface Props {
+import React, { ReactNode } from 'react';
+
+interface RootLayerProps {
   children: ReactNode;
 }
 
-const RootLayer: FC<Props> = ({ children }) => {
+const RootLayer: React.FC<RootLayerProps> = ({ children }) => {
   return (
-    <html lang='en'>
-      <body>
+    <html lang="en">
+      <body className="bg-white">
         <div>
-          {children}
         </div>
+        {children}
       </body>
     </html>
   );

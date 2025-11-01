@@ -1,24 +1,19 @@
-import React, { FC } from 'react';
-import Btn from '@/components/Btn';
-interface Props {
+import React from "react";
+import Nav from "@/components/main/Nav";
+import SideBar from "@/components/main/Sidebar";
+import ComView from "@/components/main/ComView";
 
-}
-
-const Page: FC<Props> = ({ }) => {
+const Home: React.FC = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen ">
-      <div className="flex flex-col gap-6">
-        <Btn text="Button" variant="filled" />
-        <Btn text="Button" variant="outline" />
-        <Btn text="Button" variant="outline" image='globe.svg' />
-        <Btn text="Button" />
-        <Btn text="Button" variant="3d" />
-        <Btn text="Button" variant="glow" />
-        <Btn text="Click me" variant='filling'/>
+    <div className="flex flex-col min-h-screen">
+      <Nav />
+      <div className="flex flex-1">
+        <SideBar />
+        <ComView className="flex-1" />
       </div>
     </div>
 
   );
 };
 
-export default Page;
+export default Home;

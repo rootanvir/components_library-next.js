@@ -64,8 +64,7 @@ const ComView: FC<Props> = ({ className = "" }) => {
           </p>
         </div>
       </div>
-      <Input  variant="email"/>
-      <Input  variant="floating"/>
+      <Input  variant="search"/>
       <Input />
     </section>
   );

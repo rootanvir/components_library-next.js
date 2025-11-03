@@ -1,56 +1,44 @@
 import React, { FC, useState } from "react";
+import { Search } from "lucide-react";
 
 interface Props {
   text?: string;
-  variant?: "floating" | "email" | "default";
+  variant?: "text" | "email" | "search";
   className?: string;
 }
 
-const Input: FC<Props> = ({ text = "Text", variant = "default", className = "" }) => {
+const Input: FC<Props> = ({ text = "Text", variant = "text", className = "" }) => {
   const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
 
-  let base = "w-full text-gray-900 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200";
-  let style = "";
-  let type = "text";
-  let placeholder = text;
-  let label = null;
+  const base =
+    "w-full text-gray-900 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 px-4 py-2 placeholder-gray-500 bg-transparent";
 
-  if (variant === "floating") {
-    style = "px-3 pt-5 pb-2";
-    placeholder = "";
-    label = (
-      <label
-        className={`absolute left-3 text-gray-500 transition-all duration-200 ${
-          focused || value
-            ? "text-xs -top-1.5 bg-white px-1 text-blue-600"
-            : "top-2.5 text-base"
-        }`}
-      >
-        {text}
-      </label>
+  if (variant === "search") {
+    return (
+      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+        <Search className="absolute left-3 top-2.5 text-gray-500 w-5 h-5" />
+        <input
+          type="text"
+          placeholder={text || "Search"}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className={`${base} pl-10`}
+        />
+      </div>
     );
-  } else if (variant === "email") {
-    type = "email";
-    style = "px-4 py-2 placeholder-gray-500";
   } else {
-    style = "px-4 py-2 placeholder-gray-500";
+    return (
+      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+        <input
+          type={variant === "email" ? "email" : "text"}
+          placeholder={text}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className={base}
+        />
+      </div>
+    );
   }
-
-  return (
-    <div className={`relative w-full max-w-sm mt-4 ${className}`}>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(value !== "")}
-        className={`${base} ${style}`}
-      />
-      {label}
-    </div>
-  );
 };
 
 export default Input;

@@ -17,7 +17,7 @@ const Nav: FC = () => {
           height={40}
           alt="Our Logo"
         />
-        <h1 className="bg-gradient-to-r from-yellow-400 via-red-500 to-orange-600 bg-clip-text text-transparent font-bold text-3xl" >DRACARYS</h1>
+        <h1 className="text-white text-transparent font-bold text-3xl" >DRACARYS</h1>
       </Link>
       <div className="flex gap-4 text-white">
         <Btn text="Docs" />

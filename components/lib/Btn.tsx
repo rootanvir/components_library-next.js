@@ -6,9 +6,10 @@ interface BtnProps {
   variant?: 'filled' | 'outline' | '3d' | 'glow' | 'neon' | 'gradient' | 'filling' | 'default';
   className?: string;
   image?: string;
+  onClick?: () => void; 
 }
 
-const Btn: React.FC<BtnProps> = ({ text, variant, className = '', image }) => {
+const Btn: React.FC<BtnProps> = ({ text, variant, className = '', image, onClick }) => {
   let base =
     'px-3 py-2 rounded-md cursor-pointer flex items-center justify-center gap-2 transition-all duration-150 font-medium transform';
 
@@ -26,16 +27,15 @@ const Btn: React.FC<BtnProps> = ({ text, variant, className = '', image }) => {
   } else if (variant === 'glow') {
     btnStyle =
       'bg-blue-600 text-white shadow-md hover:shadow-[0_0_15px_#3b82f6] hover:scale-105 active:scale-95';
-  }
-  else if (variant == 'filling') {
-    btnStyle = 'relative overflow-hidden px-6 py-2 text-blue-600 font-semibold border-2 border-blue-600 rounded-md transition-all duration-200 ease-out active:scale-95 before:absolute before:inset-0 before:bg-blue-600 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100 hover:text-white before:-z-10';
-  }
-  else {
+  } else if (variant === 'filling') {
+    btnStyle =
+      'relative overflow-hidden px-6 py-2 text-blue-600 font-semibold border-2 border-blue-600 rounded-md transition-all duration-200 ease-out active:scale-95 before:absolute before:inset-0 before:bg-blue-600 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100 hover:text-white before:-z-10';
+  } else {
     btnStyle = 'text-gray-700 hover:text-gray-500 hover:scale-105 active:scale-95';
   }
 
   return (
-    <button className={`${base} ${btnStyle} ${className}`}>
+    <button onClick={onClick} className={`${base} ${btnStyle} ${className}`}> 
       {image && <img src={image} alt="icon" className="w-5 h-5" />}
       <span className="text-center">{text}</span>
     </button>

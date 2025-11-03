@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "@/components/main/Nav";
 import SideBar from "@/components/main/Sidebar";
 import ComView from "@/components/main/ComView";
+import Input from "@/components/lib/Input";
 
 const Home: React.FC = () => {
   return (
@@ -11,7 +12,9 @@ const Home: React.FC = () => {
         <SideBar />
         <ComView className="flex-1" />
       </div>
+      
     </div>
+    
 
   );
 };

@@ -72,6 +72,7 @@ const ComView: FC<Props> = ({ className = "" }) => {
       <Input  variant="phone"/>
       <Input />
       <Input variant="password" text="Enter password" pass={false} />
+      <Input variant="location"/>
 
       
     </section>

@@ -1,17 +1,18 @@
-import React, { FC, useState } from "react";
-import { Search } from "lucide-react";
+"use client";
+import React, { FC, useState, useEffect } from "react";
+import { Search, MapPin, Eye, EyeOff } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 interface Props {
   text?: string;
-  variant?: "text" | "email" | "quantity" | "search" | "phone" | "password";
+  variant?: "text" | "email" | "quantity" | "search" | "phone" | "password" | "location";
   className?: string;
   onChange?: (value: string | number) => void;
   initial?: number;
   min?: number;
   max?: number;
-  pass?: boolean; // true => show as asterisk (hidden)
+  pass?: boolean;
 }
 
 const Input: FC<Props> = ({
@@ -27,6 +28,9 @@ const Input: FC<Props> = ({
   const [textValue, setTextValue] = useState("");
   const [quantity, setQuantity] = useState(initial);
   const [phoneValue, setPhoneValue] = useState("");
+  const [showPassword, setShowPassword] = useState(!pass);
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
 
   const base =
     "w-full text-gray-900 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 px-4 py-2 placeholder-gray-500";
@@ -36,6 +40,25 @@ const Input: FC<Props> = ({
     setQuantity(newVal);
     onChange?.(newVal);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (variant === "location" && query.length > 2) {
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`, {
+          headers: {
+            "Accept": "application/json",
+            "User-Agent": "YourAppName/1.0"
+          }
+        })
+          .then((res) => res.json())
+          .then((data) => setSuggestions(data.slice(0, 5)))
+          .catch(() => setSuggestions([]));
+      } else {
+        setSuggestions([]);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [query, variant]);
 
   if (variant === "quantity") {
     return (
@@ -128,7 +151,7 @@ const Input: FC<Props> = ({
     return (
       <div className={`relative w-full max-w-sm mt-4 ${className}`}>
         <input
-          type={pass ? "password" : "text"}
+          type={showPassword ? "text" : "password"}
           placeholder={text || "Password"}
           value={textValue}
           onChange={(e) => {
@@ -137,6 +160,43 @@ const Input: FC<Props> = ({
           }}
           className={base}
         />
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 top-2 text-gray-600"
+        >
+          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+        </button>
+      </div>
+    );
+  } else if (variant === "location") {
+    return (
+      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+        <MapPin className="absolute left-3 top-2.5 text-gray-500 w-5 h-5" />
+        <input
+          type="text"
+          placeholder={text || "Search location"}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className={`${base} pl-10`}
+        />
+        {suggestions.length > 0 && (
+          <ul className="absolute bg-white border border-gray-300 mt-1 w-full rounded-md shadow-md max-h-40 overflow-auto z-10">
+            {suggestions.map((s) => (
+              <li
+                key={s.place_id}
+                onClick={() => {
+                  setQuery(s.display_name);
+                  setSuggestions([]);
+                  onChange?.(s.display_name);
+                }}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {s.display_name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   } else {

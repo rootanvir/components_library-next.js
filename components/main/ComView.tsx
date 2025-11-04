@@ -6,6 +6,8 @@ import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css"; 
 import "prismjs/components/prism-jsx";  
 import Input from "../lib/Input";
+
+
 interface Props {
   className?: string;
 }
@@ -65,7 +67,13 @@ const ComView: FC<Props> = ({ className = "" }) => {
         </div>
       </div>
       <Input  variant="search"/>
+      <Input  variant="text"/>
+      <Input  variant="quantity"/>
+      <Input  variant="phone"/>
       <Input />
+      <Input variant="password" text="Enter password" pass={false} />
+
+      
     </section>
   );
 };

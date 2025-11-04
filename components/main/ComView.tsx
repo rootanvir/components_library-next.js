@@ -6,6 +6,7 @@ import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css"; 
 import "prismjs/components/prism-jsx";  
 import Input from "../lib/Input";
+import FetchDB from "@/db/fetchDB";
 
 
 interface Props {
@@ -66,15 +67,15 @@ const ComView: FC<Props> = ({ className = "" }) => {
           </p>
         </div>
       </div>
-      <Input  variant="search"/>
+      <Input  text="Search" variant="search"/>
       <Input  variant="text"/>
       <Input  variant="quantity"/>
       <Input  variant="phone"/>
       <Input />
       <Input variant="password" text="Enter password" pass={false} />
-      <Input variant="location"/>
+      <Input text="Location" variant="location"/>
 
-      
+      <FetchDB  />
     </section>
   );
 };

@@ -9,7 +9,7 @@ import Btn from '../lib/Btn';
 const Nav: FC = () => {
   
   return (
-    <nav className="flex justify-between items-center h-20 px-12 shadow-md bg-dark gap-10 border-b border-gray-800">
+    <nav className="flex justify-between items-center h-20 px-12  border-gray-800 bg-green-500">
       <Link href="#" className="flex items-center gap-5 flex-shrink-0">
         <Image
           src ="/images/dragon.svg"
@@ -17,7 +17,7 @@ const Nav: FC = () => {
           height={40}
           alt="Our Logo"
         />
-        <h1 className="text-white text-transparent font-bold text-3xl" >DRACARYS</h1>
+        <h1 className="text-white font-bold text-3xl" >DRACARYS</h1>
       </Link>
       <div className="flex gap-4 text-white">
         <Btn text="Docs" />

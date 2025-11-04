@@ -1,15 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
+import Btn from '../lib/Btn';
 
-interface Props {
-  
+interface SideBarProps {
+  children?: ReactNode;
 }
 
-const SideBar: FC<Props> = ({  }) => {
+const SideBar: FC<SideBarProps> = ({ children }) => {
   return (
-    <div className="h-auto w-60 border-r border-gray-800">
-      <h1 className="text-xl font-bold p-6">Components</h1>
-      <nav className="flex flex-col">
-        <a href="#" className="px-6 py-3 text-gray-500 hover:text-gray-200 transition-all">Button</a>
+    <div className="h-screen w-60 border-r border-gray-800 flex flex-col bg-dark">
+      {/* Header */}
+      <h1 className="text-xl font-bold p-6 flex-shrink-0  border-gray-800 text-white">
+        Components
+      </h1>
+
+      {/* Scrollable nav */}
+      <nav className="flex-1 overflow-y-auto">
+        {children}
+        <Btn text="Button"/>
+
       </nav>
     </div>
   );

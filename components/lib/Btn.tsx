@@ -1,15 +1,14 @@
-import React from 'react';
-import '../../styles/globals.css';
+import React, { FC } from 'react';
 
 interface BtnProps {
   text: string;
-  variant?: 'filled' | 'outline' | '3d' | 'glow' | 'neon' | 'gradient' | 'filling' | 'default';
+  variant?: 'filled' | 'outline' | '3d' | 'glow' | 'filling' | 'default';
   className?: string;
   image?: string;
   onClick?: () => void; 
 }
 
-const Btn: React.FC<BtnProps> = ({ text, variant, className = '', image, onClick }) => {
+const Btn: FC<BtnProps> = ({ text, variant, className = '', image, onClick }) => {
   let base =
     'px-3 py-2 rounded-md cursor-pointer flex items-center justify-center gap-2 transition-all duration-150 font-medium transform';
 
@@ -31,11 +30,11 @@ const Btn: React.FC<BtnProps> = ({ text, variant, className = '', image, onClick
     btnStyle =
       'relative overflow-hidden px-6 py-2 text-blue-600 font-semibold border-2 border-blue-600 rounded-md transition-all duration-200 ease-out active:scale-95 before:absolute before:inset-0 before:bg-blue-600 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100 hover:text-white before:-z-10';
   } else {
-    btnStyle = 'text-gray-700 hover:text-gray-500 hover:scale-105 active:scale-95';
+    btnStyle = 'text-gray-700 hover:scale-105 active:scale-95';
   }
 
   return (
-    <button onClick={onClick} className={`${base} ${btnStyle} ${className}`}> 
+    <button onClick={onClick} className={`${base} ${btnStyle} ${className}`}>
       {image && <img src={image} alt="icon" className="w-5 h-5" />}
       <span className="text-center">{text}</span>
     </button>

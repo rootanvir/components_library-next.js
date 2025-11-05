@@ -7,17 +7,17 @@ interface SideBarProps {
 
 const SideBar: FC<SideBarProps> = ({ children }) => {
   return (
-    <div className="h-screen w-60 border-r border-gray-800 flex flex-col bg-dark">
-      {/* Header */}
-      <h1 className="text-xl font-bold p-6 flex-shrink-0  border-gray-800 text-white">
+    <div className="h-screen w-60 border-r border-blue-800 flex flex-col bg-black shadow-md items-center">
+      <h1 className="text-xl font-bold p-6 flex-shrink-0 text-white ">
         Components
       </h1>
 
-      {/* Scrollable nav */}
-      <nav className="flex-1 overflow-y-auto">
+      <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
         {children}
-        <Btn text="Button"/>
-
+        <Btn
+          text="Button"
+          className="w-full text-white "
+        />
       </nav>
     </div>
   );

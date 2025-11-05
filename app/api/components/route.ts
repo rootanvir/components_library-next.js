@@ -15,7 +15,6 @@ export async function GET() {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  // Wrap data under category.button
   const finalJson = {
     category: {
       button: data || []

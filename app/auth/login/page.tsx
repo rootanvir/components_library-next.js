@@ -1,31 +1,38 @@
-"use client"
+"use client";
 
 import React from "react";
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
+import StarCanvas from "@/components/sub/StarCanvas";
+import FlyingShip from "@/components/sub/FlyingShip";
 
 const Login: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white px-4">
-      <form className="bg-gray-800 p-10 rounded-3xl shadow-xl w-full max-w-md space-y-6">
+    <div className="relative w-full h-screen bg-gray-900 text-white px-4 overflow-hidden">
+      
+      {/* Background: stars and ships */}
+      <div className="absolute inset-0 z-0">
+        <StarCanvas />
+        <FlyingShip />
+      </div>
 
+      {/* Form */}
+      <form className="relative z-10 bg-gray-900 p-10 rounded-3xl shadow-xl w-full max-w-md mx-auto space-y-6 mt-20">
         <div
-          className="flex flex-col items-center mb-6 cursor-pointer"
+          className="flex flex-col items-center mb-6 cursor-pointer group"
           onClick={() => router.push('/')}
           title="Go to Home"
         >
-          <div className="bg-gray-700 rounded-full w-32 h-32 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all">
+          <div className="bg-gray-700 rounded-full w-32 h-32 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-[0_0_25px_#f97316] group-hover:scale-105">
             <Image
               src="/images/dragon.svg"
               width={70}
               height={70}
               alt="Logo"
-              className="drop-shadow-2xl"
             />
           </div>
-
         </div>
 
         <h2 className="text-3xl font-bold text-center text-white">Login</h2>
@@ -58,7 +65,6 @@ const Login: React.FC = () => {
             Sign Up
           </span>
         </p>
-
       </form>
     </div>
   );

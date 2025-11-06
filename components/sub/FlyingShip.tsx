@@ -7,7 +7,7 @@ const FlyingShip: React.FC = () => {
   const [pos, setPos] = useState({
     left: Math.random() * 80 + 10,
     bottom: -(Math.random() * 150 + 60),
-    duration: Math.random() * 2 + 4, // slightly faster overall
+    duration: Math.random() * 2 + 4, 
     key: 0,
   });
 

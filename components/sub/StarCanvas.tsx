@@ -8,11 +8,11 @@ import '../../styles/globals.css';
 const StarBackground = (props: any) => {
   const ref = useRef<any>(null);
 
-  // Create random stars
+
   const [stars] = useState(() => {
-    const arr = new Float32Array(6000); // more stars
+    const arr = new Float32Array(6000);
     for (let i = 0; i < arr.length; i += 3) {
-      let x = Math.random() * 10 - 5; // spread wider
+      let x = Math.random() * 10 - 5; 
       let y = Math.random() * 10 - 5;
       let z = Math.random() * 10 - 5;
       const len = Math.sqrt(x * x + y * y + z * z) || 1;
@@ -25,7 +25,7 @@ const StarBackground = (props: any) => {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x += delta / 40; // slow rotation
+      ref.current.rotation.x += delta / 40; 
       ref.current.rotation.y += delta / 50;
     }
   });
@@ -43,7 +43,7 @@ const StarBackground = (props: any) => {
         />
       </Points>
 
-      {/* Extra colorful "galaxy cluster" points */}
+
       <Points positions={stars} stride={3} frustumCulled>
         <PointMaterial
           transparent
@@ -75,7 +75,7 @@ const StarCanvas = () => (
     <Canvas
       camera={{ position: [0, 0, 1] }}
       gl={{ antialias: true }}
-      style={{ background: "#0b0c1a" }} // deep space color
+      style={{ background: "#000000ff" }} 
     >
       <Suspense fallback={null}>
         <StarBackground />

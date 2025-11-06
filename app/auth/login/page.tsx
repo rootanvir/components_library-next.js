@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import StarCanvas from "@/components/sub/StarCanvas";
 import FlyingShip from "@/components/sub/FlyingShip";
+import '@/styles/globals.css';
 
 const Login: React.FC = () => {
   const router = useRouter();

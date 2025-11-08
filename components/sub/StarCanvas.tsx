@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useRef, useState, Suspense } from "react";
-import Image from "next/image";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import "../../styles/globals.css";
 
 const StarBackground = (props: any) => {
   const ref = useRef<any>(null);
+  const [stars, setStars] = useState<Float32Array | null>(null);
 
-  const [stars] = useState(() => {
+  // Generate stars only on the client
+  useEffect(() => {
     const arr = new Float32Array(6000);
     for (let i = 0; i < arr.length; i += 3) {
       let x = Math.random() * 10 - 5;
@@ -20,8 +21,8 @@ const StarBackground = (props: any) => {
       arr[i + 1] = (y / len) * 3;
       arr[i + 2] = (z / len) * 3;
     }
-    return arr;
-  });
+    setStars(arr);
+  }, []);
 
   useFrame((_, delta) => {
     if (ref.current) {
@@ -29,6 +30,8 @@ const StarBackground = (props: any) => {
       ref.current.rotation.y += delta / 50;
     }
   });
+
+  if (!stars) return null;
 
   return (
     <group ref={ref}>
@@ -72,7 +75,6 @@ const StarBackground = (props: any) => {
 
 const StarCanvas = () => (
   <div className="w-full h-full fixed inset-0 z-0 overflow-hidden bg-black">
-    {/* === Star Field === */}
     <Canvas
       camera={{ position: [0, 0, 1] }}
       gl={{ antialias: true }}
@@ -82,42 +84,6 @@ const StarCanvas = () => (
         <StarBackground />
       </Suspense>
     </Canvas>
-
-    {/* === Galaxy Images (Above Canvas) === */}
-    <div className="pointer-events-none absolute inset-0 z-10">
-      {/* Left */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-[180px] h-[180px] opacity-60">
-        <Image
-          src="/gif/galaxy1.gif"
-          alt="galaxy-left"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-
-      {/* Right */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 w-[180px] h-[180px] opacity-60">
-        <Image
-          src="/gif/galaxy2.gif"
-          alt="galaxy-right"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-
-      {/* Bottom */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[200px] h-[200px] opacity-60">
-        <Image
-          src="/gif/galaxy3.gif"
-          alt="galaxy-bottom"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-    </div>
   </div>
 );
 

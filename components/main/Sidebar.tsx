@@ -13,7 +13,7 @@ const SideBar: FC<SideBarProps> = ({ children }) => {
         {children}
         <h1 className="font-bold text-white">Components</h1>
 
-        <div className="flex flex-col space-y-0  items-start">
+        <div className="flex flex-col space-y-0  items-start mt-5">
             <Btn text="Button" variant="leftbar" />
             <Btn text="Input"  variant="leftbar" />
             <Btn text="Toast" variant="leftbar" />

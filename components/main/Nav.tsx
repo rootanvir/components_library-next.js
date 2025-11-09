@@ -3,10 +3,16 @@
 import React, { FC } from 'react';
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import '../../styles/globals.css';
 import Btn from '../lib/Btn';
 import { useRouter } from 'next/navigation';
-import { Vortex } from "@/components/ui/vortex"; // ✅ Import Vortex
+import { Vortex } from "@/components/ui/vortex";
+
+// Load EncryptedText only on client to prevent SSR hydration errors
+const EncryptedText = dynamic(() => import('@/components/ui/encrypted-text').then(mod => mod.EncryptedText), {
+  ssr: false
+});
 
 interface NavProps {
   setActivePage: (page: 'comview' | 'docs' | 'template') => void;
@@ -16,8 +22,7 @@ const Nav: FC<NavProps> = ({ setActivePage }) => {
   const router = useRouter();
 
   return (
-    <div className="relative w-full overflow-hidden"> {/* container for vortex + nav */}
-      {/* === Vortex Background === */}
+    <div className="relative w-full overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Vortex
           backgroundColor="transparent"
@@ -28,13 +33,19 @@ const Nav: FC<NavProps> = ({ setActivePage }) => {
         />
       </div>
 
-      {/* === Navigation Bar === */}
       <nav className="relative z-10 flex justify-between items-center h-20 px-12 border-b border-blue-800 bg-opacity-30 backdrop-blur-sm">
         <Link href="#" className="flex items-center gap-4 flex-shrink-0">
           <Image src="/images/dragon.svg" width={40} height={40} alt="Logo" />
-          <h1 className="text-white font-extrabold text-3xl tracking-wider drop-shadow-md">
-            DRACARYS
-          </h1>
+
+          {/* Client-only EncryptedText */}
+          <p className="text-white font-extrabold text-3xl tracking-wider drop-shadow-md">
+            <EncryptedText
+              text="DRACARYS"
+              encryptedClassName="text-neutral-500"
+              revealedClassName="dark:text-white text-white"
+              revealDelayMs={50}
+            />
+          </p>
         </Link>
 
         <div className="flex gap-5 items-center">

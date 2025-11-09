@@ -13,7 +13,6 @@ const StarBackground: React.FC<StarBackgroundProps> = (props) => {
   const ref = useRef<any>(null);
   const [stars, setStars] = useState<Float32Array | null>(null);
 
-  // generate stars on client only
   useEffect(() => {
     const arr = new Float32Array(6000);
     for (let i = 0; i < arr.length; i += 3) {
@@ -28,7 +27,6 @@ const StarBackground: React.FC<StarBackgroundProps> = (props) => {
     setStars(arr);
   }, []);
 
-  // rotate stars every frame
   useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.x += delta / 40;
@@ -78,7 +76,6 @@ const StarBackground: React.FC<StarBackgroundProps> = (props) => {
   );
 };
 
-// === Main Star Canvas with Vortex overlay ===
 const StarCanvas: React.FC = () => (
   <div className="relative w-full h-full fixed inset-0 overflow-hidden bg-black">
     <Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: true }} className="absolute inset-0 z-0">
@@ -87,7 +84,6 @@ const StarCanvas: React.FC = () => (
       </Suspense>
     </Canvas>
 
-    {/* Vortex overlay */}
     <div className="absolute inset-0 z-10">
       <Vortex
         backgroundColor="transparent"

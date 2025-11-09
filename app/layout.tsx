@@ -6,13 +6,17 @@ interface RootLayerProps {
 
 const RootLayer: React.FC<RootLayerProps> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className="bg-white">
-        <div>
+    <html>
+
+      <body>
+
+        <div >
+          {children}
         </div>
-        {children}
       </body>
+
     </html>
+
   );
 };
 

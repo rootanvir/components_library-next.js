@@ -53,9 +53,6 @@ const ComView: FC = () => {
       <div className="flex-1 overflow-y-auto p-10 space-y-12">
         <header>
           <h1 className="text-6xl font-extrabold mb-3">Button Components</h1>
-          <p className="text-lg text-gray-400 max-w-3xl">
-            Dynamically fetched examples from your API.
-          </p>
         </header>
 
         {loading ? (

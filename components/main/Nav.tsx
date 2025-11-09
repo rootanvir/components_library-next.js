@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 
 interface NavProps {
-  setActivePage: (page: 'comview' | 'docs') => void;
+  setActivePage: (page: 'comview' | 'docs' | 'template') => void;
 }
 
 const Nav: FC<NavProps> = ({ setActivePage }) => {
@@ -30,7 +30,7 @@ const Nav: FC<NavProps> = ({ setActivePage }) => {
       <div className="flex gap-5">
         <Btn text="Docs" className="text-white" onClick={() => setActivePage('docs')} />
         <Btn text="Components" className="text-white" onClick={() => setActivePage('comview')} />
-        <Btn text="UI Block" className="text-white" />
+        <Btn text="Template" className="text-white"  onClick={() => setActivePage('template')}/>
         <a className="mr-5" href="https://github.com/rootanvir/components_library-next.js" target="_blank" rel="noopener noreferrer">
           <Image
             alt="GitHub logo"

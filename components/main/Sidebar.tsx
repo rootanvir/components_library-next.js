@@ -7,14 +7,23 @@ interface SideBarProps {
 
 const SideBar: FC<SideBarProps> = ({ children }) => {
   return (
-    <div className="h-screen w-60 border-r border-blue-800 flex flex-col bg-black shadow-md items-center">
-      <h1 className="text-xl font-bold p-6 flex-shrink-0 text-white">Components</h1>
+    <div className="h-screen w-60 border-r border-blue-800 flex flex-col bg-black shadow-md items-left">
 
-      <nav className="flex-1 w-full overflow-y-auto px-4 py-2 space-y-4 scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black hover:scrollbar-thumb-blue-500 scrollbar-thumb-rounded-md flex flex-col items-center">
+      <nav className="flex flex-col justify-start items-start p-5">
         {children}
-        <Btn text="Button" className="text-white" />
+        <h1 className="font-bold text-white">Components</h1>
+
+        <div className="flex flex-col space-y-0  items-start">
+            <Btn text="Button" variant="leftbar" />
+            <Btn text="Input"  variant="leftbar" />
+            <Btn text="Toast" variant="leftbar" />
+        </div>
+
       </nav>
+
+
     </div>
+
   );
 };
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 interface BtnProps {
   text: string;
-  variant?: 'filled' | 'outline' | '3d' | 'glow' | 'filling' | 'default';
+  variant?: 'filled' | 'outline' | '3d' | 'glow' | 'filling' | 'leftbar' | 'default';
   className?: string;
   image?: string;
   onClick?: () => void; 
@@ -29,7 +29,17 @@ const Btn: FC<BtnProps> = ({ text, variant, className = '', image, onClick }) =>
   } else if (variant === 'filling') {
     btnStyle =
       'relative overflow-hidden px-6 py-2 text-blue-600 font-semibold border-2 border-blue-600 rounded-md transition-all duration-200 ease-out active:scale-95 before:absolute before:inset-0 before:bg-blue-600 before:scale-x-0 before:origin-left before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100 hover:text-white before:-z-10';
-  } else {
+  } else if (variant === 'leftbar') {
+  btnStyle = `
+    relative px-3 py-0 flex items-center gap-1 text-gray-400 text-sm rounded-md
+    before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2
+    before:w-1 before:h-4 before:bg-blue-500 before:opacity-0 before:rounded
+    hover:before:opacity-100 hover:scale-105 hover:text-md
+    transition-all duration-200 hover:text-white
+  `;
+}
+ 
+  else {
     btnStyle = 'text-gray-700 hover:scale-105 active:scale-95';
   }
 

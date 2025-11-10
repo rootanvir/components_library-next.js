@@ -8,6 +8,7 @@ import '../../styles/globals.css';
 import Btn from '../lib/Btn';
 import { useRouter } from 'next/navigation';
 import { Vortex } from "@/components/ui/vortex";
+import Landing from './Landing';
 
 // Load EncryptedText only on client to prevent SSR hydration errors
 const EncryptedText = dynamic(() => import('@/components/ui/encrypted-text').then(mod => mod.EncryptedText), {
@@ -15,7 +16,7 @@ const EncryptedText = dynamic(() => import('@/components/ui/encrypted-text').the
 });
 
 interface NavProps {
-  setActivePage: (page: 'comview' | 'docs' | 'template') => void;
+  setActivePage: (page: 'comview' | 'docs' | 'template' | 'landing') => void;
 }
 
 const Nav: FC<NavProps> = ({ setActivePage }) => {
@@ -34,10 +35,9 @@ const Nav: FC<NavProps> = ({ setActivePage }) => {
       </div>
 
       <nav className="relative z-10 flex justify-between items-center h-20 px-12 border-b border-blue-800 bg-opacity-30 backdrop-blur-sm">
-        <Link href="#" className="flex items-center gap-4 flex-shrink-0">
+        <Link href="#" className="flex items-center gap-4 flex-shrink-0" onClick={() => setActivePage('landing')}>
           <Image src="/images/dragon.svg" width={40} height={40} alt="Logo" />
 
-          {/* Client-only EncryptedText */}
           <p className="text-white font-extrabold text-3xl tracking-wider drop-shadow-md">
             <EncryptedText
               text="DRACARYS"

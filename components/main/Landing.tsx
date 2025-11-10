@@ -4,6 +4,7 @@ import Btn from "../lib/Btn";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { FlipWords } from "../ui/flip-words";
 
+
 interface LandingProps {
   setActivePage: React.Dispatch<React.SetStateAction<"landing" | "comview" | "docs" | "template">>;
 }

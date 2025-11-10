@@ -15,37 +15,44 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
     <div className="flex flex-col justify-center h-[calc(100vh-80px)] px-20 py-10 gap-20">
 
       {/* Main Info */}
-      <div className="max-w-5xl text-left flex flex-col gap-10">
-        <h1 className="text-7xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text whitespace-nowrap">
-          <EncryptedText
-            text="Welcome to DRACARYS"
-            encryptedClassName="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 text-transparent bg-clip-text"
-            revealedClassName="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text"
-            revealDelayMs={50}
-          />
-        </h1>
+      <div className="max-w-7xl flex flex-col lg:flex-row gap-16 items-start">
 
+        {/* Text Section */}
+        <div className="flex-1 flex flex-col gap-10 text-left">
+          <h1 className="text-7xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text whitespace-nowrap">
+            <EncryptedText
+              text="Welcome to DRACARYS"
+              encryptedClassName="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 text-transparent bg-clip-text"
+              revealedClassName="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text"
+              revealDelayMs={50}
+            />
+          </h1>
 
+          {/* Build {word} rest of line */}
+          <div className="mt-16">
+            <div className="text-6xl font-bold text-white dark:text-white">
+              <span>Build </span>
+              <FlipWords className="text-white font-semibold" words={words} />
+              <br />
+              <span>websites with DRACARYS</span>
+            </div>
+          </div>
 
-        {/* Build {word} rest of line */}
-        <div className="mt-16">
-          <div className="text-6xl font-bold text-white dark:text-white">
-            <span>Build </span>
-            <FlipWords className="text-white font-semibold" words={words} />
-            <br />
-            <span>websites with DRACARYS</span>
+          <p className="text-gray-500 text-lg max-w-xl leading-relaxed">
+            Explore our collection of reusable and customizable components made for developers.
+          </p>
+
+          <div className="flex flex-wrap gap-6">
+            <Btn text="Browse Components" variant="filled" />
+            <Btn text="Documentation" variant="outline" />
           </div>
         </div>
 
-
-        <p className="text-gray-500 text-lg max-w-xl leading-relaxed">
-          Explore our collection of reusable and customizable components made for developers.
-        </p>
-
-        <div className="flex flex-wrap gap-6">
-          <Btn text="Browse Components" variant="filled" />
-          <Btn text="Documentation" variant="outline" />
+        {/* Globe Section */}
+        <div className="flex-1 w-full h-[400px] lg:h-[500px]">
+          
         </div>
+
       </div>
 
       {/* Features Section */}

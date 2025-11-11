@@ -4,8 +4,10 @@ interface Props {}
 
 const Template: FC<Props> = () => {
   return (
-    <div className="text-5xl flex justify-center items-center h-screen text-white">
-      Template Demo
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className='text-7xl font-bold'>
+        This is template demo
+      </h1>
     </div>
   );
 };

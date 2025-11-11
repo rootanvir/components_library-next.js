@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import { Vortex } from "@/components/ui/vortex";
 import Landing from './Landing';
 
+
+
 // Load EncryptedText only on client to prevent SSR hydration errors
 const EncryptedText = dynamic(() => import('@/components/ui/encrypted-text').then(mod => mod.EncryptedText), {
   ssr: false

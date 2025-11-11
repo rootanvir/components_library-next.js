@@ -4,6 +4,7 @@ import Btn from "../lib/Btn";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { FlipWords } from "../ui/flip-words";
 import { ThreeDCardDemo } from "../sub/card";
+import { SparklesPreview } from "../sub/Sparkles";
 
 interface LandingProps {
   setActivePage: React.Dispatch<
@@ -15,10 +16,13 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
   const words = ["faster", "smart", "better", "easy", "beautiful", "modern"];
 
   return (
-    <div className="flex flex-col min-h-[100vh] bg-[#0b0c10] text-white">
+    <div className="relative flex flex-col min-h-screen bg-[#0b0c10] text-white overflow-hidden">
+      <div className="absolute top-[0px] left-0 w-full h-auto z-0">
+        <SparklesPreview />
+      </div>
 
       {/* HERO SECTION */}
-      <section className="flex flex-col lg:flex-row items-center justify-between w-full px-16 py-24 lg:py-32 gap-12">
+      <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full px-16 py-15 lg:py-20 gap-12">
         
         {/* Left Side */}
         <div className="flex-1 flex flex-col gap-8 text-left">
@@ -58,9 +62,9 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="w-full py-24 px-10 flex flex-col items-center bg-[#0e1015]">
+      <section className="relative z-10 w-full py-24 px-10 flex flex-col items-center ">
         <h2 className="text-4xl font-bold text-white mb-16 text-center">
-          ⚡ Key Features
+          Key Features
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-6xl w-full">
@@ -91,7 +95,7 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
       </section>
 
       {/* FOOTER */}
-      <footer className="text-sm text-gray-500 text-center py-8 border-t border-gray-800">
+      <footer className="relative z-10 text-sm text-gray-500 text-center py-8 border-t border-gray-800">
         © {new Date().getFullYear()} DRACARYS — All rights reserved.
       </footer>
     </div>

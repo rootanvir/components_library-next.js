@@ -19,7 +19,7 @@ const Btn: FC<BtnProps> = ({ text, variant, className = '', image, onClick }) =>
       'bg-blue-500 text-white hover:bg-blue-600 hover:scale-105 active:scale-95 shadow-md';
   } else if (variant === 'outline') {
     btnStyle =
-      'border border-gray-500 text-gray-800 hover:bg-gray-100 hover:scale-105 active:scale-95';
+      'border border-gray-500 text-white hover:text-black hover:bg-gray-100 hover:scale-105 active:scale-95';
   } else if (variant === '3d') {
     btnStyle =
       'text-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-[0_6px_0_#1e40af] hover:bg-blue-700 hover:scale-105 hover:-translate-y-0.5 active:translate-y-1 active:shadow-[0_2px_0_#1e40af]';

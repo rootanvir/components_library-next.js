@@ -48,8 +48,8 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
           </p>
 
           <div className="flex gap-6 mt-4">
-            <Btn text="Browse Components" variant="filled" />
-            <Btn text="Documentation" variant="outline" />
+            <Btn text="Browse Components" variant="3d" />
+            <Btn text="Documentation" variant="outline"/>
           </div>
         </div>
 

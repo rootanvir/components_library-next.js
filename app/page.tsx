@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Nav from "@/components/main/Nav";
-import ComView from "@/components/main/ComView";
+import ComView from "@/components/main/ComViewBtn";
 import dynamic from "next/dynamic";
 import Template from "@/components/main/Template";
 

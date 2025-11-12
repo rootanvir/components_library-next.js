@@ -90,10 +90,9 @@ export default Btn;`.trim();
       <div className="flex-1 ml-64 min-h-screen overflow-y-auto pt-5">
         <div className="flex flex-col items-center w-full max-w-[800px] mx-auto px-4 sm:px-6 lg:px-10 py-8 lg:py-12 space-y-8">
           {/* Title */}
-          <h1 className="text-3xl lg:text-4xl font-bold mb-2 text-center">Button Component</h1>
+          <h1 className="text-5xl lg:text-4xl font-bold mb-2 text-center">Button Component</h1>
           <p className="text-gray-400 mb-8 text-center max-w-2xl">
-            A minimal interactive button showcase. Each button variant is displayed below,
-            followed by the complete code with syntax highlighting using PrismJS.
+            A curated list of awesome, battle tested Tailwind CSS buttons components
           </p>
 
           {/* Preview Section */}

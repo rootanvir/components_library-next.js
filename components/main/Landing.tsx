@@ -28,15 +28,26 @@ const Landing: React.FC<LandingProps> = ({ setActivePage }) => {
         {/* Left Side */}
         <div className="flex-1 flex flex-col gap-8 text-left">
           <div className="mb-20">
-            <h1 className="text-6xl lg:text-7xl font-extrabold leading-tight bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
-              <EncryptedText
-                text="Welcome to DRACARYS"
-                encryptedClassName="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 text-transparent bg-clip-text"
-                revealedClassName="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text"
-                revealDelayMs={40}
-              />
-            </h1>
+
+            <div className="relative inline-block md:whitespace-nowrap">
+              <h1 className="text-6xl lg:text-7xl font-extrabold leading-tight bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                <span className="invisible select-none pointer-events-none md:whitespace-nowrap">
+                  Welcome to DRACARYS
+                </span>
+
+                <div className="absolute inset-0 md:whitespace-nowrap">
+                  <EncryptedText
+                    text="Welcome to DRACARYS"
+                    encryptedClassName="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 text-transparent bg-clip-text"
+                    revealedClassName="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-transparent bg-clip-text"
+                    revealDelayMs={40}
+                  />
+                </div>
+              </h1>
+            </div>
           </div>
+
+
 
           <div className="text-5xl lg:text-6xl font-semibold">
             <span>Build </span>

@@ -213,7 +213,7 @@ export default Btn;`.trim();
           </div>
 
           {/* Footer */}
-          <footer className="w-full text-gray-400 text-sm text-center py-4 border-t border-gray-800 mt-8">
+          <footer className="w-full text-gray-400 text-sm text-center py-4mt-8">
             © 2025 Dracarys Components. All rights reserved.
           </footer>
         </div>

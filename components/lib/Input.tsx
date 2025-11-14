@@ -1,4 +1,5 @@
 "use client";
+
 import React, { FC, useState, useEffect } from "react";
 import { Search, MapPin, Eye, EyeOff } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
@@ -32,23 +33,25 @@ const Input: FC<Props> = ({
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
+  // Dark-mode base styles
   const base =
-    "w-full text-gray-900 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 px-4 py-2 placeholder-gray-500";
+    "w-full bg-gray-800/90 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 px-4 py-2 placeholder-gray-400";
 
   const handleQuantityChange = (val: number) => {
-    let newVal = Math.min(Math.max(val, min), max);
+    const newVal = Math.min(Math.max(val, min), max);
     setQuantity(newVal);
     onChange?.(newVal);
   };
 
+  // Location autocomplete
   useEffect(() => {
     const timer = setTimeout(() => {
       if (variant === "location" && query.length > 2) {
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`, {
           headers: {
             "Accept": "application/json",
-            "User-Agent": "YourAppName/1.0"
-          }
+            "User-Agent": "YourAppName/1.0",
+          },
         })
           .then((res) => res.json())
           .then((data) => setSuggestions(data.slice(0, 5)))
@@ -60,17 +63,18 @@ const Input: FC<Props> = ({
     return () => clearTimeout(timer);
   }, [query, variant]);
 
+  // === QUANTITY ===
   if (variant === "quantity") {
     return (
-      <div className={`flex items-center border border-gray-400 rounded-md w-max ${className}`}>
+      <div className={`flex items-center border border-gray-600 rounded-md w-max ${className}`}>
         <button
           type="button"
           onClick={() => handleQuantityChange(quantity - 1)}
           disabled={quantity <= min}
-          className={`px-3 py-1 rounded-l-md ${
+          className={`px-3 py-1 rounded-l-md transition ${
             quantity <= min
-              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+              ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+              : "bg-gray-600 hover:bg-gray-500 text-white"
           }`}
         >
           -
@@ -81,45 +85,50 @@ const Input: FC<Props> = ({
           min={min}
           max={max}
           onChange={(e) => handleQuantityChange(Number(e.target.value))}
-          className="w-12 text-center border-l border-r border-gray-400 outline-none"
+          className="w-12 text-center bg-gray-800 text-white border-x border-gray-600 outline-none"
         />
         <button
           type="button"
           onClick={() => handleQuantityChange(quantity + 1)}
           disabled={quantity >= max}
-          className={`px-3 py-1 rounded-r-md ${
+          className={`px-3 py-1 rounded-r-md transition ${
             quantity >= max
-              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+              ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+              : "bg-gray-600 hover:bg-gray-500 text-white"
           }`}
         >
           +
         </button>
       </div>
     );
-  } else if (variant === "phone") {
+  }
+
+  // === PHONE ===
+  if (variant === "phone") {
     return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+      <div className={className}>
         <PhoneInput
-          country={"bd"}
+          country="bd"
           value={phoneValue}
           onChange={(value) => {
             setPhoneValue(value);
             onChange?.(value);
           }}
-          inputStyle={{
-            width: "100%",
-            borderRadius: "0.375rem",
-            borderColor: "#d1d5db",
-            padding: "0.5rem",
-          }}
+          containerClass="react-tel-input-container"
+          inputClass="react-tel-input-input"
+          buttonClass="react-tel-input-button"
+          dropdownClass="react-tel-input-dropdown"
+          searchClass="react-tel-input-search"
         />
       </div>
     );
-  } else if (variant === "search") {
+  }
+
+  // === SEARCH ===
+  if (variant === "search") {
     return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
-        <Search className="absolute left-3 top-2.5 text-gray-500 w-5 h-5" />
+      <div className={`relative ${className}`}>
+        <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
         <input
           type="text"
           placeholder={text || "Search"}
@@ -132,9 +141,12 @@ const Input: FC<Props> = ({
         />
       </div>
     );
-  } else if (variant === "email") {
+  }
+
+  // === EMAIL ===
+  if (variant === "email") {
     return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+      <div className={className}>
         <input
           type="email"
           placeholder={text}
@@ -147,9 +159,12 @@ const Input: FC<Props> = ({
         />
       </div>
     );
-  } else if (variant === "password") {
+  }
+
+  // === PASSWORD ===
+  if (variant === "password") {
     return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
+      <div className={`relative ${className}`}>
         <input
           type={showPassword ? "text" : "password"}
           placeholder={text || "Password"}
@@ -163,16 +178,19 @@ const Input: FC<Props> = ({
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-2 text-gray-600"
+          className="absolute right-3 top-2 text-gray-400 hover:text-white transition"
         >
           {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
         </button>
       </div>
     );
-  } else if (variant === "location") {
+  }
+
+  // === LOCATION ===
+  if (variant === "location") {
     return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
-        <MapPin className="absolute left-3 top-2.5 text-gray-500 w-5 h-5" />
+      <div className={`relative ${className}`}>
+        <MapPin className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
         <input
           type="text"
           placeholder={text || "Search location"}
@@ -181,7 +199,7 @@ const Input: FC<Props> = ({
           className={`${base} pl-10`}
         />
         {suggestions.length > 0 && (
-          <ul className="absolute bg-white border border-gray-300 mt-1 w-full rounded-md shadow-md max-h-40 overflow-auto z-10">
+          <ul className="absolute left-0 right-0 mt-1 bg-gray-800 border border-gray-700 rounded-md shadow-xl max-h-48 overflow-y-auto z-50">
             {suggestions.map((s) => (
               <li
                 key={s.place_id}
@@ -190,7 +208,7 @@ const Input: FC<Props> = ({
                   setSuggestions([]);
                   onChange?.(s.display_name);
                 }}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 text-white hover:bg-gray-700 cursor-pointer transition"
               >
                 {s.display_name}
               </li>
@@ -199,22 +217,23 @@ const Input: FC<Props> = ({
         )}
       </div>
     );
-  } else {
-    return (
-      <div className={`relative w-full max-w-sm mt-4 ${className}`}>
-        <input
-          type="text"
-          placeholder={text}
-          value={textValue}
-          onChange={(e) => {
-            setTextValue(e.target.value);
-            onChange?.(e.target.value);
-          }}
-          className={base}
-        />
-      </div>
-    );
   }
+
+  // === DEFAULT (TEXT) ===
+  return (
+<div className={className}>
+    <input
+      type="text"
+      placeholder={text}
+      value={textValue}
+      onChange={(e) => {
+        setTextValue(e.target.value);
+        onChange?.(e.target.value); 
+      }}
+      className={base}
+    />
+  </div>
+  );
 };
 
 export default Input;

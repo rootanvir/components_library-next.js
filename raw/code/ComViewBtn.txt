@@ -1,5 +1,5 @@
 "use client";
-import fs from "fs";
+
 import React, { useEffect, useState } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
@@ -21,9 +21,6 @@ const ComViewBtn = () => {
       return () => clearTimeout(timer);
     }
   }, [copied]);
-
-
-
 
   const code = `import React, { FC } from 'react';
 

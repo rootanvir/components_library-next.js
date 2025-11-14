@@ -1,29 +1,58 @@
-import React, { FC, ReactNode } from 'react';
-import Btn from '../lib/Btn';
+// components/SideBar.tsx
+'use client';
+
+import React from "react";
+import Btn from "../lib/Btn";
 
 interface SideBarProps {
-  children?: ReactNode;
+  activeComponent: "btn" | "input";
+  setActiveComponent: (value: "btn" | "input") => void;
 }
 
-const SideBar: FC<SideBarProps> = ({ children }) => {
+const SideBar: React.FC<SideBarProps> = ({
+  activeComponent,
+  setActiveComponent,
+}) => {
   return (
-    <div className="h-screen w-60 border-r border-blue-800 flex flex-col bg-black shadow-md items-left">
+    <nav className="p-4 flex flex-col h-full">
+      {/* ---- Title ---- */}
+      <h2 className=" mb-6 pl-2  text-2xl font-bold text-blue-400 uppercase tracking-wider">
+        Components
+      </h2>
 
-      <nav className="flex flex-col justify-start items-start p-5">
-        {children}
-        <h1 className="font-bold text-white">Components</h1>
+      {/* ---- Menu Items ---- */}
+      <div className="pl-5">
+        {/* Button Component */}
+        <Btn
+          text="Button"
+          variant="leftbar"
+          onClick={() => setActiveComponent("btn")}
+          className={`
+            w-full justify-start text-left
+            ${activeComponent === "btn"
+              ? "text-white before:opacity-100 scale-105"
+              : "text-gray-400 hover:text-gray-200"
+            }
+            transition-all duration-200
+          `}
+        />
 
-        <div className="flex flex-col space-y-0  items-start mt-5">
-            <Btn text="Button" variant="leftbar" />
-            <Btn text="Input"  variant="leftbar" />
-            <Btn text="Toast" variant="leftbar" />
-        </div>
-
-      </nav>
-
-
-    </div>
-
+        {/* Input Component */}
+        <Btn
+          text="Input "
+          variant="leftbar"
+          onClick={() => setActiveComponent("input")}
+          className={`
+            w-full justify-start text-left
+            ${activeComponent === "input"
+              ? "text-white before:opacity-100 scale-105"
+              : "text-gray-400 hover:text-gray-200"
+            }
+            transition-all duration-200
+          `}
+        />
+      </div>
+    </nav>
   );
 };
 

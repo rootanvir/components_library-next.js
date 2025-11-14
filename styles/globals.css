@@ -127,3 +127,36 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* react-phone-input-2 — FULL DARK MODE + VISIBLE SELECTION */
+.react-tel-input .form-control {
+  @apply !bg-gray-800/90 !text-white !border-gray-600 !placeholder-gray-400 !rounded-md !px-4 !py-2 !pl-12;
+  @apply focus:!outline-none focus:!ring-2 focus:!ring-blue-500 focus:!border-blue-500;
+}
+
+.react-tel-input .flag-dropdown,
+.react-tel-input .selected-flag {
+  @apply !bg-gray-700 !border-gray-600 !rounded-l-md;
+}
+
+.react-tel-input .selected-flag {
+  @apply !bg-gray-600; /* Selected country highlight */
+}
+
+.react-tel-input .country-list {
+  @apply !bg-gray-800 !border !border-gray-700 !shadow-xl;
+}
+
+.react-tel-input .country-list .country {
+  @apply !text-white hover:!bg-gray-700;
+}
+
+.react-tel-input .country-list .country.highlight {
+  @apply !bg-gray-600 !text-white;
+}
+
+.react-tel-input .country-list .search {
+  @apply !bg-gray-700 !text-white !placeholder-gray-400 !border-b !border-gray-600;
+}
+
+

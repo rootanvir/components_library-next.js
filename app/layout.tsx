@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react';
 
+export const metadata = {
+  title: 'DRACARYS',          
+  description: 'dragon favicon',
+};
+
 interface RootLayerProps {
   children: ReactNode;
 }

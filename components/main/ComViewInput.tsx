@@ -383,7 +383,7 @@ export default Input;`.trim();
                   type: (
                     <div className="flex flex-wrap gap-1">
                       {["text", "email", "password", "search", "location", "phone", "quantity"].map((v) => (
-                        <span key={v} className="px-2 py-1 text-xs font-mono bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-md shadow-sm">
+                        <span key={v} className="px-2 py-1 text-xs font-mono bg-blue-700 text-white rounded-md shadow-sm">
                           {v}
                         </span>
                       ))}

@@ -7,7 +7,9 @@ interface RootLayerProps {
 const RootLayer: React.FC<RootLayerProps> = ({ children }) => {
   return (
     <html>
-
+      <head>
+        <link rel="icon" href="/images/dragon.png" sizes="any" />
+      </head>
       <body>
 
         <div >

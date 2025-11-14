@@ -50,7 +50,7 @@ const Nav: FC<NavProps> = ({ setActivePage }) => {
         </Link>
 
         <div className="flex gap-5 items-center">
-          <Btn text="Docs" className="text-white  opacity-50 " onClick={() => setActivePage('docs')} />
+          <Btn text="Docs" className="text-white pointer-events-none opacity-50 " onClick={() => setActivePage('docs')} />
           <Btn text="Components" className="text-white" onClick={() => setActivePage('comview')} />
           <Btn text="Template" className="text-white pointer-events-none opacity-50" onClick={() => setActivePage('template')} />
 
